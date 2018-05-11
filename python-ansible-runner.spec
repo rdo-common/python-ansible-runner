@@ -15,13 +15,13 @@ Source0:        https://github.com/ansible/%{pypi_name}/archive/%{version}/%{pyp
 BuildArch:      noarch
 
 BuildRequires:  python-daemon
-BuildRequires:  python2-devel
-BuildRequires:  %{py2_dist mock}
-BuildRequires:  %{py2_dist psutil}
-BuildRequires:  %{py2_dist pexpect}
-BuildRequires:  %{py2_dist pytest}
-BuildRequires:  %{py2_dist PyYAML}
-BuildRequires:  %{py2_dist setuptools}
+BuildRequires:  python-devel
+BuildRequires:  python-mock
+BuildRequires:  python-psutil
+BuildRequires:  pexpect
+BuildRequires:  python2-pytest
+BuildRequires:  PyYAML
+BuildRequires:  python-setuptools
 
 %description
 Ansible Runner is a tool and python library that helps when interfacing with
@@ -32,13 +32,13 @@ standalone tool, or imported into a python project.
 Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
-Requires:       ansible
 
+Requires:       ansible
 Requires:       python-daemon
-Requires:       %{py2_dist pexpect}
-Requires:       %{py2_dist psutil}
-Requires:       %{py2_dist PyYAML}
-Requires:       %{py2_dist setuptools}
+Requires:       pexpect
+Requires:       python-psutil
+Requires:       PyYAML
+Requires:       python-setuptools
 
 %description -n python2-%{pypi_name}
 Ansible Runner is a tool and python library that helps when interfacing with
