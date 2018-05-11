@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -15,6 +15,7 @@ Source0:        https://github.com/ansible/%{pypi_name}/archive/%{version}/%{pyp
 BuildArch:      noarch
 
 BuildRequires:  python-daemon
+%if 0%{?el7}
 BuildRequires:  python-devel
 BuildRequires:  python-mock
 BuildRequires:  python-psutil
@@ -22,6 +23,15 @@ BuildRequires:  pexpect
 BuildRequires:  python2-pytest
 BuildRequires:  PyYAML
 BuildRequires:  python-setuptools
+%else
+BuildRequires:  python2-devel
+BuildRequires:  %{py2_dist mock}
+BuildRequires:  %{py2_dist psutil}
+BuildRequires:  %{py2_dist pexpect}
+BuildRequires:  %{py2_dist pytest}
+BuildRequires:  %{py2_dist PyYAML}
+BuildRequires:  %{py2_dist setuptools}
+%endif
 
 %description
 Ansible Runner is a tool and python library that helps when interfacing with
@@ -32,13 +42,19 @@ standalone tool, or imported into a python project.
 Summary:        %{summary}
 %{?python_provide:%python_provide python2-%{pypi_name}}
 
-
 Requires:       ansible
 Requires:       python-daemon
+%if 0%{?el7}
 Requires:       pexpect
 Requires:       python-psutil
 Requires:       PyYAML
 Requires:       python-setuptools
+%else
+Requires:       %{py2_dist pexpect}
+Requires:       %{py2_dist psutil}
+Requires:       %{py2_dist PyYAML}
+Requires:       %{py2_dist setuptools}
+%endif
 
 %description -n python2-%{pypi_name}
 Ansible Runner is a tool and python library that helps when interfacing with
@@ -75,5 +91,7 @@ ln -s %{_bindir}/ansible-runner-%{python2_version} %{buildroot}/%{_bindir}/ansib
 %{python2_sitelib}/ansible_runner-%{version}-py?.?.egg-info
 
 %changelog
+* Fri May 11 2018 Dan Radez <dradez@redhat.com> - 1.0.1-2
+- Adding conditionals so the same spec can be built on fedora and el7
 * Fri May 04 2018 Dan Radez <dradez@redhat.com> - 1.0.1-1
 - Initial package. Python 2 support only initially.
