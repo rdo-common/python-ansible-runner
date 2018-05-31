@@ -2,7 +2,7 @@
 %global pypi_name ansible-runner
 
 Name:           python-%{pypi_name}
-Version:        1.0.2
+Version:        1.0.3
 Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
@@ -14,6 +14,7 @@ URL:            https://github.com/ansible/ansible-runner
 Source0:        https://github.com/ansible/%{pypi_name}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
 
+BuildRequires:  ansible >= 2.5
 BuildRequires:  python-daemon
 %if 0%{?el7}
 BuildRequires:  python-devel
@@ -46,9 +47,10 @@ BuildRequires:  python34-setuptools
 BuildRequires:  python34-six
 %else
 BuildRequires:  python3-devel
-BuildRequires:  python3dist(pexpect) >= 4.5
+BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(psutil)
-BuildRequires:  python3dist(python-daemon)
+BuildRequires:  python3dist(pexpect) >= 4.5
+BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pyyaml)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
@@ -100,7 +102,6 @@ Requires:       python-six
 %else
 Requires:       python3dist(pexpect) >= 4.5
 Requires:       python3dist(psutil)
-Requires:       python3dist(python-daemon)
 Requires:       python3dist(pyyaml)
 Requires:       python3dist(setuptools)
 Requires:       python3dist(six)
@@ -157,6 +158,8 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{python3_sitelib}/ansible_runner-%{version}-py?.?.egg-info
 
 %changelog
+* Thu May 31 2018 Dan Radez <dradez@redhat.com> - 1.0.3-1
+- Updating to version 1.0.3
 * Tue May 29 2018 Dan Radez <dradez@redhat.com> - 1.0.2-1
 - Updating to version 1.0.2
 - Package Requires versions updated
