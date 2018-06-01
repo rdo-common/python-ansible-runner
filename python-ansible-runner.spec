@@ -3,7 +3,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -89,10 +89,12 @@ standalone tool, or imported into a python project.
 
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
+%if ! 0%{?el7}
 %{?python_provide:%python_provide python3-%{pypi_name}}
+%endif
 
 Requires:       ansible >= 2.5
-Requires:       python-daemon
+Requires:       python3-daemon
 %if 0%{?el7}
 Requires:       pexpect >= 4.5
 Requires:       python-psutil
@@ -158,6 +160,8 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{python3_sitelib}/ansible_runner-%{version}-py?.?.egg-info
 
 %changelog
+* Fri Jun 01 2018 Dan Radez <dradez@redhat.com> - 1.0.3-2
+- Updates to help RDO build
 * Thu May 31 2018 Dan Radez <dradez@redhat.com> - 1.0.3-1
 - Updating to version 1.0.3
 * Tue May 29 2018 Dan Radez <dradez@redhat.com> - 1.0.2-1
