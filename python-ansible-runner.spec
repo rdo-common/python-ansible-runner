@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.0.4
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -135,7 +135,6 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %files -n python2-%{pypi_name}
 %license LICENSE.md
 %doc README.md
-%{_bindir}/ansible-runner
 %{_bindir}/ansible-runner-2
 %{_bindir}/ansible-runner-%{python2_version}
 %{python2_sitelib}/ansible_runner
@@ -146,15 +145,17 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %files -n python3-%{pypi_name}
 %license LICENSE.md
 %doc README.md
-%{_bindir}/ansible-runner
 %{_bindir}/ansible-runner-3
 %{_bindir}/ansible-runner-%{python3_version}
 %{python3_sitelib}/ansible_runner
 %{python3_sitelib}/test
 %{python3_sitelib}/ansible_runner-%{version}-py?.?.egg-info
 %endif
+%{_bindir}/ansible-runner
 
 %changelog
+* Tue Jul 03 2018 Iryna Shcherbina - 1.0.4-2
+- Fix Python 3 dependency from python2-ansible-runner
 * Mon Jul 02 2018 Dan Radez <dradez@redhat.com> - 1.0.4-1
 - Updating to version 1.0.4
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.3-4
