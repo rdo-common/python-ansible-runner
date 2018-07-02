@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.0.3
-Release:        4%{?dist}
+Version:        1.0.4
+Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -155,9 +155,10 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %endif
 
 %changelog
+* Mon Jul 02 2018 Dan Radez <dradez@redhat.com> - 1.0.4-1
+- Updating to version 1.0.4
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.3-4
 - Rebuilt for Python 3.7
-
 * Fri Jun 01 2018 Dan Radez <dradez@redhat.com> - 1.0.3-3
 - skip py3 on non-fedora
 * Thu May 31 2018 Dan Radez <dradez@redhat.com> - 1.0.3-1
