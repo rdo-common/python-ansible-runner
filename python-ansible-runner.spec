@@ -6,8 +6,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.0.4
-Release:        4%{?dist}
+Version:        1.0.5
+Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -154,6 +154,8 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Wed Jul 25 2018 Dan Radez <dradez@redhat.com> - 1.0.5-1
+- Updating to version 1.0.5
 * Wed Jul 25 2018 Dan Radez <dradez@redhat.com> - 1.0.4-4
 - 1.0.4 requires pexepct 4.6
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-3
