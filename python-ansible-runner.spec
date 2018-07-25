@@ -33,7 +33,7 @@ BuildRequires:  python-six
 BuildRequires:  python2-devel
 BuildRequires:  %{py2_dist mock}
 BuildRequires:  %{py2_dist psutil}
-BuildRequires:  %{py2_dist pexpect} >= 4.5
+BuildRequires:  %{py2_dist pexpect} >= 4.6
 BuildRequires:  %{py2_dist pytest}
 BuildRequires:  %{py2_dist PyYAML}
 BuildRequires:  %{py2_dist setuptools}
@@ -44,7 +44,7 @@ BuildRequires:  %{py2_dist six}
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(psutil)
-BuildRequires:  python3dist(pexpect) >= 4.5
+BuildRequires:  python3dist(pexpect) >= 4.6
 BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pyyaml)
 BuildRequires:  python3dist(setuptools)
@@ -64,13 +64,13 @@ Summary:        %{summary}
 Requires:       ansible >= 2.5
 Requires:       python-daemon
 %if 0%{?el7}
-Requires:       pexpect >= 4.5
+Requires:       pexpect >= 4.6
 Requires:       python-psutil
 Requires:       PyYAML
 Requires:       python-setuptools
 Requires:       python-six
 %else
-Requires:       %{py2_dist pexpect} >= 4.5
+Requires:       %{py2_dist pexpect} >= 4.6
 Requires:       %{py2_dist psutil}
 Requires:       %{py2_dist PyYAML}
 Requires:       %{py2_dist setuptools}
@@ -89,7 +89,7 @@ Summary:        %{summary}
 
 Requires:       ansible >= 2.5
 Requires:       python3-daemon
-Requires:       python3dist(pexpect) >= 4.5
+Requires:       python3dist(pexpect) >= 4.6
 Requires:       python3dist(psutil)
 Requires:       python3dist(pyyaml)
 Requires:       python3dist(setuptools)
