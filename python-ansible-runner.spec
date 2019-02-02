@@ -7,7 +7,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.1.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -154,6 +154,9 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.2-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Wed Oct 23 2018 Dan Radez <dradez@redhat.com> - 1.1.2-1
 - Updating to version 1.1.2
 * Wed Sep 12 2018 Dan Radez <dradez@redhat.com> - 1.1.0-1
