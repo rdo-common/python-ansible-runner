@@ -1,46 +1,21 @@
 # Created by pyp2rpm-3.2.2
 %global pypi_name ansible-runner
 
-%if 0%{?fedora}
-%global with_python3 1
-%endif
-
 Name:           python-%{pypi_name}
-Version:        1.1.2
-Release:        2%{?dist}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
 URL:            https://github.com/ansible/ansible-runner
 # ansible-runner doesn't include the LICENSE file in the tarball on pythonhosted yet.
 # pulling from github intil the pythonhosted tarball is updated
-# Source0:        https://files.pythonhosted.org/packages/source/a/%%{pypi_name}/%%{pypi_name}-%%{version}.tar.gz
-Source0:        https://github.com/ansible/%{pypi_name}/archive/%{version}/%{pypi_name}-%{version}.tar.gz
+Source0:        https://files.pythonhosted.org/packages/source/a/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
+# Source0:        https://github.com/ansible/%%{pypi_name}/archive/%%{version}/%%{pypi_name}-%%{version}.tar.gz
 BuildArch:      noarch
 
-BuildRequires:  ansible >= 2.5
-BuildRequires:  python-daemon
-%if 0%{?el7}
-BuildRequires:  python-devel
-BuildRequires:  python-mock
-BuildRequires:  python-psutil
-BuildRequires:  pexpect >= 4.6
-BuildRequires:  python2-pytest
-BuildRequires:  PyYAML
-BuildRequires:  python-setuptools
-BuildRequires:  python-six
-%else
-BuildRequires:  python2-devel
-BuildRequires:  %{py2_dist mock}
-BuildRequires:  %{py2_dist psutil}
-BuildRequires:  %{py2_dist pexpect} >= 4.6
-BuildRequires:  %{py2_dist pytest}
-BuildRequires:  %{py2_dist PyYAML}
-BuildRequires:  %{py2_dist setuptools}
-BuildRequires:  %{py2_dist six}
-%endif
-
-%if 0%{?with_python3}
+BuildRequires:  ansible >= 2.6
+BuildRequires:  python3-daemon
 BuildRequires:  python3-devel
 BuildRequires:  python3dist(mock)
 BuildRequires:  python3dist(psutil)
@@ -49,40 +24,13 @@ BuildRequires:  python3dist(pytest)
 BuildRequires:  python3dist(pyyaml)
 BuildRequires:  python3dist(setuptools)
 BuildRequires:  python3dist(six)
-%endif
+BuildRequires:  python3dist(tox)
 
 %description
 Ansible Runner is a tool and python library that helps when interfacing with
 Ansible from other systems whether through a container image interface, as a
 standalone tool, or imported into a python project.
 
-%package -n     python2-%{pypi_name}
-Summary:        %{summary}
-%{?python_provide:%python_provide python2-%{pypi_name}}
-
-
-Requires:       ansible >= 2.5
-Requires:       python-daemon
-%if 0%{?el7}
-Requires:       pexpect >= 4.6
-Requires:       python-psutil
-Requires:       PyYAML
-Requires:       python-setuptools
-Requires:       python-six
-%else
-Requires:       %{py2_dist pexpect} >= 4.6
-Requires:       %{py2_dist psutil}
-Requires:       %{py2_dist PyYAML}
-Requires:       %{py2_dist setuptools}
-Requires:       %{py2_dist six}
-%endif
-
-%description -n python2-%{pypi_name}
-Ansible Runner is a tool and python library that helps when interfacing with
-Ansible from other systems whether through a container image interface, as a
-standalone tool, or imported into a python project.
-
-%if 0%{?with_python3}
 %package -n     python3-%{pypi_name}
 Summary:        %{summary}
 %{?python_provide:%python_provide python3-%{pypi_name}}
@@ -99,7 +47,6 @@ Requires:       python3dist(six)
 Ansible Runner is a tool and python library that helps when interfacing with
 Ansible from other systems whether through a container image interface, as a
 standalone tool, or imported into a python project.
-%endif
 
 %prep
 %autosetup -n %{pypi_name}-%{version}
@@ -107,41 +54,19 @@ standalone tool, or imported into a python project.
 rm -rf %{pypi_name}.egg-info
 
 %build
-%py2_build
-%if 0%{?with_python3}
 %py3_build
-%endif
 
 %install
 # Must do the subpackages' install first because the scripts in /usr/bin are
 # overwritten with every setup.py install.
 
-%py2_install
-cp %{buildroot}/%{_bindir}/ansible-runner %{buildroot}/%{_bindir}/ansible-runner-%{python2_version}
-ln -s %{_bindir}/ansible-runner-%{python2_version} %{buildroot}/%{_bindir}/ansible-runner-2
-
-%if 0%{?with_python3}
 %py3_install
 cp %{buildroot}/%{_bindir}/ansible-runner %{buildroot}/%{_bindir}/ansible-runner-%{python3_version}
 ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansible-runner-3
-%endif
 
 %check
-%{__python2} setup.py test ||:
-%if 0%{?with_python3}
-%{__python3} setup.py test ||:
-%endif
+%{__python3} -m tox -e py3 --sitepackages
 
-%files -n python2-%{pypi_name}
-%license LICENSE.md
-%doc README.md
-%{_bindir}/ansible-runner-2
-%{_bindir}/ansible-runner-%{python2_version}
-%{python2_sitelib}/ansible_runner
-%{python2_sitelib}/test
-%{python2_sitelib}/ansible_runner-%{version}-py?.?.egg-info
-
-%if 0%{?with_python3}
 %files -n python3-%{pypi_name}
 %license LICENSE.md
 %doc README.md
@@ -150,14 +75,15 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{python3_sitelib}/ansible_runner
 %{python3_sitelib}/test
 %{python3_sitelib}/ansible_runner-%{version}-py?.?.egg-info
-%endif
 %{_bindir}/ansible-runner
 
 %changelog
+* Mon Feb 04 2019 Dan Radez <dradez@redhat.com> - 1.2.0-1
+- Updating to version 1.2
+- removing python 2 from the spec for F30
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
-
-* Wed Oct 23 2018 Dan Radez <dradez@redhat.com> - 1.1.2-1
+* Tue Oct 23 2018 Dan Radez <dradez@redhat.com> - 1.1.2-1
 - Updating to version 1.1.2
 * Wed Sep 12 2018 Dan Radez <dradez@redhat.com> - 1.1.0-1
 - Updating to version 1.1.0
