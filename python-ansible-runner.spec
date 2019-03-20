@@ -10,8 +10,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.2.0
-Release:        2%{?dist}
+Version:        1.3.0
+Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -172,6 +172,8 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Wed Mar 20 2019 Dan Radez <dradez@redhat.com> - 1.3.0-1
+- Updating to version 1.3
 * Wed Feb 13 2019 Yatin Karel <ykarel@redhat.com> - 1.2.0-2
 - Enable python2 build for CentOS <= 7
 * Mon Feb 04 2019 Dan Radez <dradez@redhat.com> - 1.2.0-1
