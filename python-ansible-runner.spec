@@ -10,7 +10,7 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.3.2
+Version:        1.3.3
 Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
@@ -172,6 +172,8 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Mon Apr 22 2019 Dan Radez <dradez@redhat.com> - 1.3.3-1
+- Updating to version 1.3.3
 * Wed Apr 10 2019 Dan Radez <dradez@redhat.com> - 1.3.2-1
 - Updating to version 1.3.2
 * Wed Mar 20 2019 Dan Radez <dradez@redhat.com> - 1.3.0-1
