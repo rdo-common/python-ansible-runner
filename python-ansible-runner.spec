@@ -10,7 +10,7 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.3.3
+Version:        1.3.4
 Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
@@ -172,44 +172,65 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Mon Apr 30 2019 Dan Radez <dradez@redhat.com> - 1.3.4-1
+- Updating to version 1.3.4
+
 * Mon Apr 22 2019 Dan Radez <dradez@redhat.com> - 1.3.3-1
 - Updating to version 1.3.3
+
 * Wed Apr 10 2019 Dan Radez <dradez@redhat.com> - 1.3.2-1
 - Updating to version 1.3.2
+
 * Wed Mar 20 2019 Dan Radez <dradez@redhat.com> - 1.3.0-1
 - Updating to version 1.3
+
 * Wed Feb 13 2019 Yatin Karel <ykarel@redhat.com> - 1.2.0-2
 - Enable python2 build for CentOS <= 7
+
 * Mon Feb 04 2019 Dan Radez <dradez@redhat.com> - 1.2.0-1
 - Updating to version 1.2
 - removing python 2 from the spec for F30
+
 * Sat Feb 02 2019 Fedora Release Engineering <releng@fedoraproject.org> - 1.1.2-2
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_30_Mass_Rebuild
+
 * Tue Oct 23 2018 Dan Radez <dradez@redhat.com> - 1.1.2-1
 - Updating to version 1.1.2
+
 * Wed Sep 12 2018 Dan Radez <dradez@redhat.com> - 1.1.0-1
 - Updating to version 1.1.0
+
 * Wed Jul 25 2018 Dan Radez <dradez@redhat.com> - 1.0.5-1
 - Updating to version 1.0.5
+
 * Wed Jul 25 2018 Dan Radez <dradez@redhat.com> - 1.0.4-4
 - 1.0.4 requires pexepct 4.6
+
 * Fri Jul 13 2018 Fedora Release Engineering <releng@fedoraproject.org> - 1.0.4-3
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_29_Mass_Rebuild
+
 * Tue Jul 03 2018 Iryna Shcherbina - 1.0.4-2
 - Fix Python 3 dependency from python2-ansible-runner
+
 * Mon Jul 02 2018 Dan Radez <dradez@redhat.com> - 1.0.4-1
 - Updating to version 1.0.4
+
 * Tue Jun 19 2018 Miro Hrončok <mhroncok@redhat.com> - 1.0.3-4
 - Rebuilt for Python 3.7
+
 * Fri Jun 01 2018 Dan Radez <dradez@redhat.com> - 1.0.3-3
 - skip py3 on non-fedora
+
 * Thu May 31 2018 Dan Radez <dradez@redhat.com> - 1.0.3-1
 - Updating to version 1.0.3
+
 * Tue May 29 2018 Dan Radez <dradez@redhat.com> - 1.0.2-1
 - Updating to version 1.0.2
 - Package Requires versions updated
 - added py3 support
+
 * Fri May 11 2018 Dan Radez <dradez@redhat.com> - 1.0.1-2
 - Adding conditionals so the same spec can be built on fedora and el7
+
 * Fri May 04 2018 Dan Radez <dradez@redhat.com> - 1.0.1-1
 - Initial package. Python 2 support only initially.
