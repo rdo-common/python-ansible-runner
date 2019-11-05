@@ -10,7 +10,7 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.4.2
+Version:        1.4.4
 Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
@@ -172,6 +172,9 @@ ln -s %{_bindir}/ansible-runner-%{python3_version} %{buildroot}/%{_bindir}/ansib
 %{_bindir}/ansible-runner
 
 %changelog
+* Tue Nov 05 2019 Dan Radez <dradez@redhat.com> - 1.4.4-1
+- updating to version 1.4.4
+
 * Wed Oct 09 2019 Dan Radez <dradez@redhat.com> - 1.4.2-1
 - Updating to version 1.4.2
 
