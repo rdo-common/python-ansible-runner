@@ -10,8 +10,8 @@
 %endif
 
 Name:           python-%{pypi_name}
-Version:        1.4.4
-Release:        2%{?dist}
+Version:        1.4.5
+Release:        1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
@@ -170,10 +170,13 @@ py.test-3 -v test
 %endif
 %{_bindir}/ansible-runner
 
+%changelog
+* Tue Mar 24 2020 Dan Radez <dradez@redhat.com> - 1.4.5-1
+- updating to version 1.4.5
+
 * Wed Dec 04 2019 Yatin Karel <ykarel@redhat.com> - 1.4.4-2
 - Drop dependency on tox
 
-%changelog
 * Tue Nov 05 2019 Dan Radez <dradez@redhat.com> - 1.4.4-1
 - updating to version 1.4.4
 
