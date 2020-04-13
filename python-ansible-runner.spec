@@ -11,7 +11,7 @@
 
 Name:           python-%{pypi_name}
 Version:        1.4.5
-Release:        1%{?dist}
+Release:        1.1%{?dist}
 Summary:        A tool and python library to interface with Ansible
 
 License:        ASL 2.0
